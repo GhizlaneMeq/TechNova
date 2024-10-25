@@ -5,14 +5,11 @@ import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Controller
@@ -42,6 +39,28 @@ public class UserController {
     @PostMapping("/users/save")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.save(user);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/edit/{id}")
+    public String editUser(@PathVariable("id") int id, Model model) {
+        Optional<User> user = userService.findById(Long.valueOf(id));
+        model.addAttribute("user", user.get());
+        return "editUser";
+    }
+
+
+
+    @PostMapping("/users/update")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.update(user);
+        return "redirect:/users";
+    }
+
+
+    @PostMapping("/users/delete")
+    public String deleteUser(@ModelAttribute("user") User user) {
+        userService.delete(user.getId());
         return "redirect:/users";
     }
 }

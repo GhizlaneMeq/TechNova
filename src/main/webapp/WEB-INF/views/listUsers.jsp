@@ -85,10 +85,10 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                             <div class="flex gap-2">
-                                                <a href="users?action=edit&id=${user.id}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-700 hover:text-green-500">
+                                                <a href="users/edit/${user.id}" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-700 hover:text-green-500">
                                                     Edit
                                                 </a>
-                                                <form action="users?action=delete" method="POST">
+                                                <form action="users/delete" method="POST">
                                                     <input type="hidden" name="id" value="${user.id}">
                                                     <button type="submit" class="px-4 py-2 bg-red-500 border rounded-lg text-sm font-medium text-gray-300 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-700 hover:bg-gray-800">
                                                         Delete
